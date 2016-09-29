@@ -20,9 +20,9 @@ app.get("/:dateString", function(req, res) {
         return;
     }
     var year, month, date;
-    if (Number(req.params.dateString)) {
-        dateString = new Date(Number(req.params.dateString) * 1000);
-        date = dateString.getDate() + 1;
+    if (Number(req.params.dateString) || req.params.dateString == 0) {
+        dateString = new Date(Number(req.params.dateString) * 1000 + 28800000);
+        date = dateString.getDate();
         timeJSON.Unix = req.params.dateString;
     } else {
         // entry is string
