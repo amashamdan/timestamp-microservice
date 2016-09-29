@@ -1,0 +1,18 @@
+{
+  "name": "timestamp-service",
+  "version": "1.0.0",
+  "description": "Free Code Camp's first API project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "API",
+    "Node.js",
+    "Heroku",
+    "Express"
+  ],
+  "author": "Amer Hamdan",
+  "license": "ISC"
+}
