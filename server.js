@@ -36,4 +36,5 @@ app.get("/:dateString", function(req, res) {
     res.end();
 });
 
-app.listen(8080);
+var port = Number(process.env.PORT || 3000)
+app.listen(port);
