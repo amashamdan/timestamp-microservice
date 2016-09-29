@@ -1,23 +1,3 @@
-/*var http = require("http");
-var url = require("url");
-var server = http.createServer(function(req, res) {
-    var parsedUrl = url.parse(req.url, true);
-    var returned = {};
-    var date = new Date(parsedUrl.query.iso);
-    if (parsedUrl.pathname == "/api/parsetime") {
-        returned.hour = date.getHours();
-        returned.minute = date.getMinutes();
-        returned.second = date.getSeconds();
-    } else if (parsedUrl.pathname == "/api/unixtime") {
-        returned.unixtime = date.getTime();
-    } else {
-        return res.end("<p>not workking</p>");
-    }
-    res.writeHead(200, {"Content-Type": "application/json"});
-    res.end("<p>workking</p>");
-});
-server.listen(8080);*/
-
 var express = require("express");
 var app = express();
 
@@ -28,14 +8,24 @@ app.get("/", function(req, res) {
 app.get("/:dateString", function(req, res) {
     var dateString = new Date(req.params.dateString);
     var timeJSON = {};
-    if (dateString) {
-        timeJSON.Natural = dateString;
+    if (!dateString) {
+        timeJSON = {"Natural": null, "Unix": null};
+        res.send(timeJSON);
+        res.end();
+        return;
+    }
+    if (Number(req.params.dateString)) {
+        res.send("working on number conversion");
+    } else {
+        // entry is string
+        var year = dateString.getYear() + 1900;
+        var month = dateString.getMonth() + 1;
+        var date = dateString.getDate();
+        timeJSON.Natural = month + " " + date + ", " + year;
         timeJSON.Unix = (dateString.getTime() - 28800000) / 1000;
         res.send(timeJSON);
-        res.end(); 
-    } else {
-        var timeJSON = {"Natural": null, "Unix": null};
-    }
+        res.end();
+    } 
 });
 
 app.listen(8080);
