@@ -7,26 +7,33 @@ app.get("/", function(req, res) {
 });
 
 app.get("/:dateString", function(req, res) {
-    var dateString = new Date(req.params.dateString);
+    if (Number(req.params.dateString)) {    
+        var dateString = new Date(Number(req.params.dateString));
+    } else {
+        var dateString = new Date(req.params.dateString)
+    }
     var timeJSON = {};
-    if (!dateString) {
-        timeJSON = {"Natural": null, "Unix": null};
+    if (dateString == "Invalid Date") {
+        timeJSON = {"Unix": null, "Natural": null};
         res.send(timeJSON);
         res.end();
         return;
     }
+    var year, month, date;
     if (Number(req.params.dateString)) {
-        res.send("working on number conversion");
+        dateString = new Date(Number(req.params.dateString) * 1000);
+        date = dateString.getDate() + 1;
+        timeJSON.Unix = req.params.dateString;
     } else {
         // entry is string
-        var year = dateString.getYear() + 1900;
-        var month = months[dateString.getMonth()];
-        var date = dateString.getDate();
-        timeJSON.Natural = month + " " + date + ", " + year;
+        date = dateString.getDate();
         timeJSON.Unix = (dateString.getTime() - 28800000) / 1000;
-        res.send(timeJSON);
-        res.end();
     } 
+    year = dateString.getYear() + 1900;
+    month = months[dateString.getMonth()];
+    timeJSON.Natural = month + " " + date + ", " + year;
+    res.send(timeJSON);
+    res.end();
 });
 
 app.listen(8080);
