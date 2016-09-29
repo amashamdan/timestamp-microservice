@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<style>
+		.container {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 900px;
+			font-family: 'Raleway', sans-serif;
+			font-size: 0.9em;
+			background-color: #048A81;
+			color: white;
+			border-radius: 20px;
+			padding: 20px;
+		}
+		.footer {
+			color: gray;
+			font-size: 0.75em;
+			font-family: 'Raleway', sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h3>Welcome to Timestamp Microservice</h3>
+		<h4>The first Free Code Camp back end developement project.</h4>
+		<div>
+			<ul>
+				<li>This app converts Unix timestamp to natural language date and vice versa.</li>
+				<li>Enter a date string after this pages's url and press enter, and you will see the result.</li>
+				<li>The result is a JSON object with two keys: Natural and Unix. An invalid date string entered by the user will result in "null" for both Unix and Natural keys.</li>
+			</ul>
+			<h4>Examples</h4>
+			<p>The follwing shows url entered and the expected result.</p>
+			url<br/><code>http://localhost:8080/january 15 2014</code><br/>
+			or <br/><code>http://localhost:8080/jan 15 2014</code><br/>
+			or <br/><code>http://localhost:8080/1 15 2014</code><br/>
+			result<br/><code>{"Unix":1389744000,"Natural":"January 15, 2014"}</code><br/><br/>
+			url<br/><code>http://localhost:8080/1468969200</code><br/>
+			result<br/><code>{"Unix":1468969200,"Natural":"July 20, 2016"}</code><br/><br/>
+			url<br/><code>http://localhost:8080/not a date</code><br/>
+			result<br/><code>{"Unix":null,"Natural":null}</code><br/><br/>
+		</div>
+		</div>
+		<hr/>
+		<div class="footer">
+			<div class="author">
+				<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
+				<p>Visit my pages:</p>
+				<ul class="pages">
+					<li><a href="http://amashamdan.github.io/P1-portfolio/" target="blank">Portfolio</a></li>
+					<li><a href="https://github.com/amashamdan" target="blank">Github</a></li>
+					<li><a href="http://codepen.io/amashamdan/" target="blank">CodePen</a></li>
+					<li><a href="https://www.linkedin.com/in/amerhamdan" target="blank">Linkedin</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
