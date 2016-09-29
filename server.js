@@ -3,7 +3,7 @@ var app = express();
 var months = ["January", "Febreuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 app.get("/", function(req, res) {
-    res.end("<p>Test by entering a url string</p>");
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/:dateString", function(req, res) {
