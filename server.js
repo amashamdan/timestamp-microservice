@@ -27,7 +27,10 @@ app.get("/:dateString", function(req, res) {
     } else {
         // entry is string
         date = dateString.getDate();
+        /* For local host this is the working line:
         timeJSON.Unix = (dateString.getTime() - 28800000) / 1000;
+        For online deployed version, the offset of 28800000 is not needed. */
+        timeJSON.Unix = (dateString.getTime()) / 1000;
     } 
     year = dateString.getYear() + 1900;
     month = months[dateString.getMonth()];
